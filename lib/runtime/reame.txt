@@ -1,0 +1,4 @@
+运行时数据
+token
+password
+user_id
