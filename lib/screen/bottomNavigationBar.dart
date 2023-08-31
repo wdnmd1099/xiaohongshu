@@ -1,3 +1,5 @@
+// import 'dart:js_interop';
+
 import 'package:flutter/material.dart';
 import 'package:app/screen/follow.dart';
 import 'package:app/screen/recommend.dart';
@@ -6,13 +8,14 @@ class bottomNavigationBar extends StatefulWidget {
   const bottomNavigationBar({super.key});
 
   @override
-  State<bottomNavigationBar> createState() => _BottomNavigationBarExampleState();
+  State<bottomNavigationBar> createState() =>
+      _BottomNavigationBarExampleState();
 }
 
 class _BottomNavigationBarExampleState extends State<bottomNavigationBar> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   List<Widget> bottonViews(BuildContext context, ETCcontroller) {
     List<Widget> widgetOptions = <Widget>[
@@ -22,7 +25,7 @@ class _BottomNavigationBarExampleState extends State<bottomNavigationBar> {
         child: Scaffold(
           appBar: PreferredSize(
             preferredSize:
-            Size.fromHeight(MediaQuery.of(context).size.height * 0.08),
+                Size.fromHeight(MediaQuery.of(context).size.height * 0.08),
             child: AppBar(
               centerTitle: true,
               leading: IconButton(
@@ -35,7 +38,7 @@ class _BottomNavigationBarExampleState extends State<bottomNavigationBar> {
                 ),
                 indicatorWeight: 0.80,
                 indicatorPadding:
-                EdgeInsets.only(right: 20, left: 20, bottom: 8),
+                    EdgeInsets.only(right: 20, left: 20, bottom: 8),
                 labelPadding: EdgeInsets.only(
                   top: 4,
                 ),
@@ -64,7 +67,6 @@ class _BottomNavigationBarExampleState extends State<bottomNavigationBar> {
           ),
           body: TabBarView(
             children: [
-
               FollowPage(),
               //推荐页body
               Recommend(),
@@ -95,21 +97,6 @@ class _BottomNavigationBarExampleState extends State<bottomNavigationBar> {
     return widgetOptions;
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -117,50 +104,57 @@ class _BottomNavigationBarExampleState extends State<bottomNavigationBar> {
   }
 
   final ExpansionTileController ETCcontroller =
-  ExpansionTileController(); //折叠组件的controller
+      ExpansionTileController(); //折叠组件的controller
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: bottonViews(context, ETCcontroller).elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.06,
-        child: GestureDetector(
-          onLongPress: () => {},
-          child: BottomNavigationBar(
-            backgroundColor: Colors.black,
-            selectedLabelStyle: TextStyle(fontSize: 16),
-            unselectedLabelStyle: TextStyle(fontSize: 16),
-            type: BottomNavigationBarType.fixed,
-            unselectedItemColor: Colors.grey,
-            showUnselectedLabels: true,
-            currentIndex: _selectedIndex,
-            // selectedItemColor: Colors.amber[800],
-            onTap: _onItemTapped,
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: SizedBox.shrink(),
-                label: '首页',
-              ),
-              BottomNavigationBarItem(
-                icon: SizedBox.shrink(),
-                label: '购物',
-              ),
-              BottomNavigationBarItem(
-                icon: SizedBox.shrink(),
-                label: 'Icon',
-              ),
-              BottomNavigationBarItem(
-                icon: SizedBox.shrink(),
-                label: '消息',
-              ),
-              BottomNavigationBarItem(
-                icon: SizedBox.shrink(),
-                label: '我',
-              ),
-            ],
+    return MaterialApp(
+      theme: ThemeData(
+          primaryColor: Colors.greenAccent,
+          highlightColor: Color.fromRGBO(0, 0, 0, 0),
+          splashColor: Color.fromRGBO(0, 0, 0, 0)),
+      home: Scaffold(
+        body: Center(
+          child: bottonViews(context, ETCcontroller).elementAt(_selectedIndex),
+        ),
+        bottomNavigationBar: SizedBox(
+          height: MediaQuery.of(context).size.height * 0.1,
+          child: GestureDetector(
+            onLongPress: () => {},
+            child: BottomNavigationBar(
+              backgroundColor: Colors.white,
+              selectedLabelStyle: TextStyle(fontSize: 16),
+              unselectedLabelStyle: TextStyle(fontSize: 16),
+              type: BottomNavigationBarType.fixed,
+              unselectedItemColor: Colors.grey,
+              showUnselectedLabels: true,
+              currentIndex: _selectedIndex,
+              selectedFontSize:0,
+              // selectedItemColor: Colors.amber[800],
+              onTap: _onItemTapped,
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: SizedBox.shrink(),
+                  label: '首页',
+                ),
+                BottomNavigationBarItem(
+                  icon: SizedBox.shrink(),
+                  label: '购物',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.add_card),
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: SizedBox.shrink(),
+                  label: '消息',
+                ),
+                BottomNavigationBarItem(
+                  icon: SizedBox.shrink(),
+                  label: '我',
+                ),
+              ],
+            ),
           ),
         ),
       ),

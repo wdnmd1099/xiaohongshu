@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:app/component/recommendBlock.dart';
 import 'dart:async';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
@@ -114,6 +115,17 @@ class _SecondPageState extends State<Recommend>
       'https://img0.baidu.com/it/u=1723718844,2581000878&fm=253&fmt=auto&app=138&f=JPEG?w=382&h=500'
     },
   ];
+  List msgList = [
+    {'msg':'要实现文本超出两行省略的效果，只显示一行高度的文本，可以使用Text组件的maxLines和overflow属性。'},
+    {'msg':'靠靠靠靠靠靠靠靠靠靠靠靠靠'},
+    {'msg':'啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊'},
+    {'msg':'水水水水水是是是是'},
+    {'msg':'嗡嗡嗡嗡嗡嗡'},
+    {'msg':'哇哇哇哇哇哇哇哇哇哇哇哇哇哇哇哇哇哇哇'},
+    {'msg':'呃呃呃呃呃呃呃呃呃'},
+    {'msg':'日日日日日日日日日日日日日日日日日日日'},
+
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +140,7 @@ class _SecondPageState extends State<Recommend>
           height: maxHeight,
           width: maxWidth,
           decoration:
-          BoxDecoration(border: Border.all(color: Colors.black, width: 2)),
+          BoxDecoration(border: Border.all(color: Colors.transparent, width: 0)),
           child: Stack(
             children: [
               Positioned(
@@ -142,7 +154,8 @@ class _SecondPageState extends State<Recommend>
                         // top: _top,
                         child: Container(
                           height: maxHeight * 0.83 * 0.07,
-                          color: Colors.transparent,
+                          width: maxWidth ,
+                          color: Colors.yellow,
                           child: TabBar(
                             labelColor:Colors.orange,
                             unselectedLabelColor: Colors.grey,
@@ -172,8 +185,6 @@ class _SecondPageState extends State<Recommend>
                               onNotification: (notification) {
                                 // print(_top);
                                 if (notification is ScrollUpdateNotification) {//滚动条在移动中
-
-
                                   if (notification.dragDetails != null &&
                                       notification.dragDetails!.delta.dy > 0) {
                                     setState(() {
@@ -218,115 +229,13 @@ class _SecondPageState extends State<Recommend>
                                     itemBuilder: (context, index) {
                                       // print(index);
                                       String imagePath = imgList[index % 8]['path'];
+                                      String msgPath = msgList[index % 8]['msg'];
                                       Image img = Image.network(imagePath);
-                                      return Container(
-                                        color: Colors.white,
-                                        // height: (index % 5 + 1) * 100,
-
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                              padding: EdgeInsets.all(4),
-                                              decoration: BoxDecoration(
-                                                // borderRadius: BorderRadius.circular(50),
-                                                  border: Border.all(
-                                                      color: Colors.transparent, width: 0)),
-                                              height: img.height,
-                                              child: ClipPath(
-                                                clipper: TopRoundedCornersClipper(),
-                                                child: Image.network(imagePath),
-                                              ),
-                                            ),
-                                            Container(
-                                              color: Colors.transparent,
-                                              padding:
-                                              EdgeInsets.only(left: 8, right: 8),
-                                              child: Text('回复是否iO欧冠和发红色合计佛山就哦i是'),
-                                            ),
-                                            Container(
-                                              padding:
-                                              EdgeInsets.only(left: 8, right: 8,top: 6,bottom: 6),
-                                              // padding: EdgeInsets.zero,
-                                              width: maxWidth,
-                                              color: Colors.transparent,
-                                              child: Center(
-                                                child: Row(
-                                                  children: [
-                                                    Container(
-                                                      color: Colors.transparent,
-                                                      child: const CircleAvatar(
-                                                        radius: 8,
-                                                        backgroundImage: NetworkImage(
-                                                            'https://img0.baidu.com/it/u=949511033,1113765775&fm=253&app=138&size=w931&n=0&f=JPEG&fmt=auto?sec=1692723600&t=d0c88947d3b6ac729e51c3ef6ee5a8ad'),
-                                                      ),
-                                                    ),
-                                                    Container(
-                                                      padding: EdgeInsets.only(left: 12),
-                                                      color: Colors.transparent,
-                                                      width: 75,
-                                                      child: Container(
-                                                        child: const Text(
-                                                          '请你来一杯阿帕茶吧',
-                                                          overflow: TextOverflow.ellipsis,
-                                                          style: TextStyle(fontSize: 8),
-                                                        ),
-                                                      ),
-
-                                                    ),
-                                                    Container(
-                                                      child: Expanded(
-                                                        child: Container(
-                                                          color: Colors.transparent,
-                                                          child: Align(
-                                                            alignment:
-                                                            Alignment.centerRight,
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                              MainAxisAlignment.end,
-                                                              children: [
-                                                                Container(
-                                                                  color:Colors.transparent,
-                                                                  // width: 32,
-                                                                  padding:
-                                                                  EdgeInsets.all(0),
-                                                                  child: Container(
-                                                                    padding:EdgeInsets.only(right: 4),
-                                                                    child: GestureDetector(
-                                                                      onTap: ()=>{print('点击了')},
-                                                                      child: const Icon(
-                                                                        Icons.add_card,
-                                                                        size: 16,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-
-                                                                ),
-                                                                Container(
-                                                                  color: Colors.yellow,
-                                                                  // width: 70,
-                                                                  child: const Text(
-                                                                    '1787',
-
-                                                                    style: TextStyle(
-                                                                        fontSize: 12,overflow: TextOverflow.ellipsis),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      );
+                                      return RecommendBlock(path:imagePath,img:img,msg:msgPath);
                                     },
                                   ),
                                   MasonryGridView.count(
+                                    // physics: BouncingScrollPhysics(),
                                     crossAxisCount: 2,
                                     mainAxisSpacing: 4,
                                     crossAxisSpacing: 4,
@@ -334,111 +243,8 @@ class _SecondPageState extends State<Recommend>
                                       // print(index);
                                       String imagePath = imgList[index % 8]['path'];
                                       Image img = Image.network(imagePath);
-                                      return Container(
-                                        color: Colors.white,
-                                        // height: (index % 5 + 1) * 100,
-
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                              padding: EdgeInsets.all(4),
-                                              decoration: BoxDecoration(
-                                                // borderRadius: BorderRadius.circular(50),
-                                                  border: Border.all(
-                                                      color: Colors.transparent, width: 0)),
-                                              height: img.height,
-                                              child: ClipPath(
-                                                clipper: TopRoundedCornersClipper(),
-                                                child: Image.network(imagePath),
-                                              ),
-                                            ),
-                                            Container(
-                                              color: Colors.transparent,
-                                              padding:
-                                              EdgeInsets.only(left: 8, right: 8),
-                                              child: Text('回复是否iO欧冠和发红色合计佛山就哦i是'),
-                                            ),
-                                            Container(
-                                              padding:
-                                              EdgeInsets.only(left: 8, right: 8,top: 6,bottom: 6),
-                                              // padding: EdgeInsets.zero,
-                                              width: maxWidth,
-                                              color: Colors.transparent,
-                                              child: Center(
-                                                child: Row(
-                                                  children: [
-                                                    Container(
-                                                      color: Colors.transparent,
-                                                      child: const CircleAvatar(
-                                                        radius: 8,
-                                                        backgroundImage: NetworkImage(
-                                                            'https://img0.baidu.com/it/u=949511033,1113765775&fm=253&app=138&size=w931&n=0&f=JPEG&fmt=auto?sec=1692723600&t=d0c88947d3b6ac729e51c3ef6ee5a8ad'),
-                                                      ),
-                                                    ),
-                                                    Container(
-                                                      padding: EdgeInsets.only(left: 12),
-                                                      color: Colors.transparent,
-                                                      width: 75,
-                                                      child: Container(
-                                                        child: const Text(
-                                                          '请你来一杯阿帕茶吧',
-                                                          overflow: TextOverflow.ellipsis,
-                                                          style: TextStyle(fontSize: 8),
-                                                        ),
-                                                      ),
-
-                                                    ),
-                                                    Container(
-                                                      child: Expanded(
-                                                        child: Container(
-                                                          color: Colors.transparent,
-                                                          child: Align(
-                                                            alignment:
-                                                            Alignment.centerRight,
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                              MainAxisAlignment.end,
-                                                              children: [
-                                                                Container(
-                                                                  color:Colors.transparent,
-                                                                  // width: 32,
-                                                                  padding:
-                                                                  EdgeInsets.all(0),
-                                                                  child: Container(
-                                                                    padding:EdgeInsets.only(right: 4),
-                                                                    child: GestureDetector(
-                                                                      onTap: ()=>{print('点击了')},
-                                                                      child: const Icon(
-                                                                        Icons.add_card,
-                                                                        size: 16,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-
-                                                                ),
-                                                                Container(
-                                                                  color: Colors.yellow,
-                                                                  // width: 70,
-                                                                  child: const Text(
-                                                                    '1787',
-
-                                                                    style: TextStyle(
-                                                                        fontSize: 12,overflow: TextOverflow.ellipsis),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      );
+                                      String msgPath = msgList[index % 8]['msg'];
+                                      return RecommendBlock(path:imagePath,img:img,msg:msgPath);
                                     },
                                   ),
                                   Text('ABC'),
