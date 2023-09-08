@@ -1,6 +1,4 @@
-import 'dart:ffi';
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:app/component/recommendBlock.dart';
 import 'dart:async';
@@ -51,11 +49,14 @@ class _SecondPageState extends State<Recommend>
     super.dispose();
   }
 
-  Function throttle(Function fn, Duration time) {
+  Function throttle(Function fn,Duration time) {
     bool cding = false;
 
-    return (Function fn, Duration time) {
+    return (Function fn,Duration time) {
+      print('jile');
       if (cding) return;
+      fn();
+      print('laile ');
       cding = true;
       Timer(time, () {
         cding = false;
@@ -222,11 +223,13 @@ class _SecondPageState extends State<Recommend>
                               color: Colors.transparent,
                               width: 0,
                             )),
-                            child: NotificationListener<ScrollNotification>(
+                            child:  NotificationListener<ScrollNotification>(
                               onNotification: (notification) {
+
                                 if (notification is ScrollUpdateNotification) {
                                   //滚动条在移动中
-                                  if(notification.dragDetails != null && notification.dragDetails!.delta.dy < 0 && _top  <= -maxHeight * 0.97 * 0.06){
+                                  void test(notification){
+                                    if(notification.dragDetails != null && notification.dragDetails!.delta.dy < 0 && _top  <= -maxHeight * 0.97 * 0.06){
                                     _top = -maxHeight * 0.97 * 0.06;
                                     print('上了');
                                   }else if(notification.dragDetails != null && notification.dragDetails!.delta.dy > 0 && _top >= 0) {
@@ -252,7 +255,9 @@ class _SecondPageState extends State<Recommend>
                                         _top += notification.dragDetails!.delta.dy;
                                       }
                                     });
-                                  }
+                                  } }
+                                  // throttle(test, Duration(milliseconds: 100));
+
                                 }
                                 return true;
                               },

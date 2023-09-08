@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../screen/follow.dart';
 
 class RecommendBlock extends StatefulWidget {
-  RecommendBlock({Key? key, this.path, this.img, this.msg}) : super(key: key);
-  String? msg;
+  RecommendBlock({Key? key, this.path, this.img, required this.msg}) : super(key: key);
+  String msg;
   String? path;
   Image? img;
 

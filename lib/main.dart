@@ -7,9 +7,9 @@ void main() {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Named Routes Demo',
-      initialRoute: '/loading1',
+      initialRoute: '/bottomNavigationBar',
       routes: {
-        '/loading1': (context) => const bottomNavigationBar(),
+        '/bottomNavigationBar': (context) => const bottomNavigationBar(),
       },
     ),
   );
